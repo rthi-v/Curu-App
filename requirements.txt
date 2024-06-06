@@ -1,7 +1,7 @@
 streamlit
 apify_client 
 nltk
-matplotlib.pyplot
+matplotlib
 pandas
 stopwords
 word_tokenize
