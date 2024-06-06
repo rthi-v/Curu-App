@@ -16,6 +16,9 @@ from wordcloud import WordCloud
 import re
 import requests
 from bs4 import BeautifulSoup
+# Download NLTK data
+nltk.download('punkt')
+nltk.download('stopwords')
 
 #Used for Sentimental Analysis
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
