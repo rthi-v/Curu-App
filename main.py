@@ -24,7 +24,7 @@ nltk.download('stopwords')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 #Used for LDA Modelling
 from sklearn.feature_extraction.text import CountVectorizer
-
+nltk.download('vader_lexicon')
 
 
 # Custom CSS to ensure equal spacing
