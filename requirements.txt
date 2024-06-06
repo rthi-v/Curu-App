@@ -1,5 +1,5 @@
 time
-ApifyClient
+from apify_client import ApifyClient
 nltk
 matplotlib.pyplot
 streamlit
