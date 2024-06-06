@@ -340,6 +340,28 @@ def sentiment_analysis(df):
     for keyword, count in top_keywords:
         print(f"{keyword.capitalize()} ({count} mentions)")
 
+    # List of emotions
+    emotions = ["Happiness", "Sadness", "Anger", "Surprise", "Anticipation"]
+
+    # to calculate for each emotions in the ist
+    emotion_counts = {emotion: 0 for emotion in set(emotions)}
+
+    # Tokenize, count words, and associate with emotions
+    for text, emotion in zip(df['Clean_Review'], emotions):
+        words = text.split()  # Tokenize the text
+        for word in words:
+            emotion_counts[emotion] += 1
+
+    # Calculcate the sum of emotions
+    total_word_count = sum(emotion_counts.values())
+
+    emotion_proportions = {emotion: count / total_word_count for emotion, count in emotion_counts.items()}
+  
+
+    # Filter emotions with non-zero counts
+    filtered_emotions = [emotion for emotion, count in emotion_counts.items() if count > 0]
+    filtered_proportions = [emotion_proportions[emotion] for emotion in filtered_emotions]
+
     # Use columns to split the page into two columns
     col1, col2 = st.columns(2)
 
@@ -361,7 +383,7 @@ def sentiment_analysis(df):
         sizes = sentiment_count.values
         colors = ['green', 'blue', 'red']
 
-        fig, ax = plt.subplots(figsize=(8, 8))
+        #fig, ax = plt.subplots(figsize=(8, 8))
         wedges, texts, autotexts = ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140,
                                           textprops=dict(fontsize=14, fontweight='bold'))
 
@@ -386,28 +408,19 @@ def sentiment_analysis(df):
         st.pyplot(fig)
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # Section 4: Scatter Plot (right column)
+    # Section 4: Emotion proportion(Bar chart)
     with col2:
         st.markdown('<div class="section">', unsafe_allow_html=True)
-
-        # st.bar_chart(df)
+        st.header("Emotions distribution")
+        fig, ax = plt.subplots(figsize=(16, 10))
+        ax.bar(filtered_emotions, filtered_proportions)
+        ax.set_xlabel("Emotion")
+        ax.set_ylabel("Proportion", fontweight='bold')
+        # Set x-axis labels bold
+        for label in ax.get_xticklabels():
+            label.set_fontweight('bold')
+        st.pyplot(fig)
         st.markdown('</div>', unsafe_allow_html=True)
-      #  st.header("Keyword Extraction")
-
-        # Subsection: Positive Keywords
-       # st.markdown('<div class="section">', unsafe_allow_html=True)
-       # st.subheader("Positive Keywords")
-        # positive_keywords = ["good", "excellent", "positive", "happy", "joyful"]
-       # st.write("Positive keywords extracted:")
-        # st.write(", ".join(positive_keywords))
-
-        # Subsection: Negative Keywords
-       # st.subheader("Negative Keywords")
-        # negative_keywords = ["bad", "poor", "negative", "sad", "angry"]
-       # st.write("Negative keywords extracted:")
-        # st.write(", ".join(negative_keywords))
-       # st.markdown('</div>', unsafe_allow_html=True)
-
 
 # Sidebar for user input
 
@@ -422,7 +435,7 @@ if __name__ == "__main__":
 
        # Scrape Amazon for product information based on the provided input
        product_info = scrape_amazon(search_product, brand_key)
-       print(product_info)
+       #print(product_info)
        # Display the product information as a dropdown
        if product_info:
            st.sidebar.title("Product Details")
