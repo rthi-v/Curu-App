@@ -1,0 +1,16 @@
+time
+ApifyClient
+nltk
+matplotlib.pyplot
+streamlit
+pandas
+stopwords
+word_tokenize
+pos_tag
+Counter
+WordCloud
+re
+requests
+BeautifulSoup
+SentimentIntensityAnalyzer
+CountVectorizer

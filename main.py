@@ -1,56 +1,27 @@
 import time
-import requests
-import scrapy
-import scrapydo
-import numpy as np
-import math
 from apify_client import ApifyClient
-import sys
-import re                                          #Used for to extract the data for preprocessing using regex functions
-from collections import Counter                    #For count the term and the frequencys
-#Used for dataprocessing activity for stop words and word tokenization
+
 import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 #Used to plot the graphs
 import matplotlib.pyplot as plt
-from bs4 import BeautifulSoup
-#Used to plot the word cloud
-from wordcloud import WordCloud
 import streamlit as st
 import pandas as pd
-import numpy as np
-#nltk.download('stopwords')
-#nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from collections import Counter
-from sklearn.feature_extraction.text import TfidfVectorizer
-import contractions
 nltk.download('averaged_perceptron_tagger')
-from nltk.stem import PorterStemmer, WordNetLemmatizer
-#nltk.download('wordnet')
 #Used to plot the word cloud
 from wordcloud import WordCloud
 import re
 import requests
 from bs4 import BeautifulSoup
-#Used for Sentimental Analysis
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-#nltk.download('vader_lexicon')
-# For plotting the interactive graphs after fitting the LDA Model
-#import pyLDAvis.sklearn
-#import pyLDAvis
-#import pyLDAvis.lda_model
 
 #Used for Sentimental Analysis
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-#nltk.download('vader_lexicon')
-import seaborn as sns
 #Used for LDA Modelling
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.decomposition import LatentDirichletAllocation
+
 
 
 # Custom CSS to ensure equal spacing
