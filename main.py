@@ -356,7 +356,7 @@ def sentiment_analysis(df):
     total_word_count = sum(emotion_counts.values())
 
     emotion_proportions = {emotion: count / total_word_count for emotion, count in emotion_counts.items()}
-  
+
 
     # Filter emotions with non-zero counts
     filtered_emotions = [emotion for emotion, count in emotion_counts.items() if count > 0]
